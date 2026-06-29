@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpeedType Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">S</div>
+      <span class="logo-text">SpeedType Arena</span>
+    </div>
+    <div class="header-right">
+      <div class="daily-best" id="dailyBest" style="display:none">
+        <span class="trophy-icon">&#9733;</span>
+        Best: <strong id="dailyBestVal">0</strong> WPM
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">
+        <span id="themeIcon">&#9728;</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Controls bar -->
+    <div class="controls" id="controls">
+      <div class="mode-selector">
+        <button class="mode-btn" data-time="15" id="btn15">15s</button>
+        <button class="mode-btn" data-time="30" id="btn30">30s</button>
+        <button class="mode-btn active" data-time="60" id="btn60">60s</button>
+        <button class="mode-btn" data-time="0" id="btnPractice">Practice</button>
+      </div>
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-label">WPM</div>
+          <div class="stat-value" id="liveWpm">0</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="stat-label">ACC</div>
+          <div class="stat-value" id="liveAcc">100%</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat timer-stat">
+          <div class="stat-value timer-value" id="timerDisplay">60s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Typing area -->
+    <div class="typing-section" id="typingSection">
+      <div class="typing-hint" id="typingHint">Type to start</div>
+
+      <div class="typing-area" id="typingArea" tabindex="0" role="textbox" aria-label="Typing area">
+        <div class="typing-text" id="typingText"></div>
+        <textarea
+          id="hiddenInput"
+          class="hidden-input"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          aria-hidden="true"
+          tabindex="-1"
+        ></textarea>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="restartBtn">Restart Test</button>
+      <button class="btn btn-secondary" id="newTextBtn">New Text</button>
+    </div>
+
+    <div class="shortcut-hint">Press <kbd>Tab</kbd> + <kbd>Enter</kbd> to restart quickly</div>
+
+    <!-- Results overlay -->
+    <div class="results-overlay" id="resultsOverlay" style="display:none">
+      <div class="results-panel">
+        <div class="results-title">Results</div>
+        <div class="new-best-badge" id="newBestBadge" style="display:none">&#9733; New Daily Best!</div>
+        <div class="results-grid">
+          <div class="result-item">
+            <div class="result-label">WPM</div>
+            <div class="result-value cyan" id="resFinalWpm">0</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Accuracy</div>
+            <div class="result-value" id="resFinalAcc">0%</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Correct Words</div>
+            <div class="result-value green" id="resCorrect">0</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Incorrect Words</div>
+            <div class="result-value red" id="resIncorrect">0</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Time</div>
+            <div class="result-value" id="resTime">0s</div>
+          </div>
+        </div>
+
+        <!-- WPM Chart -->
+        <div class="chart-wrap" id="chartWrap">
+          <div class="chart-label">WPM over time</div>
+          <canvas id="wpmChart" height="100"></canvas>
+        </div>
+
+        <div class="results-actions">
+          <button class="btn btn-primary" id="tryAgainBtn">Try Again</button>
+          <button class="btn btn-secondary" id="newTextResultBtn">New Text</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
